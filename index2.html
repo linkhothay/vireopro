@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Đang mở nội dung...</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #020617;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .box {
+    text-align: center;
+    max-width: 320px;
+  }
+
+  .loader {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255,255,255,.2);
+    border-top-color: #ff0050;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  button {
+    margin-top: 18px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: none;
+    background: #ff0050;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    display: none;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <div class="loader"></div>
+  <p id="text">Đang mở nội dung, vui lòng chờ…</p>
+  <button id="btn">👉 Nhấn để tiếp tục</button>
+</div>
+
+<script>
+  const AFF_LINK = "https://vt.tiktok.com/ZSHE7CVpT2QtX-PwIZs/";
+
+  const btn = document.getElementById("btn");
+  const text = document.getElementById("text");
+
+  function openLink() {
+    window.location.href = AFF_LINK;
+  }
+
+  // Sau 2.2s → hiện nút (iOS cần user interaction)
+  setTimeout(() => {
+    text.innerText = "Chạm nút bên dưới để tiếp tục";
+    btn.style.display = "inline-block";
+  }, 2200);
+
+  // Auto mở thử (Android / Web)
+  setTimeout(() => {
+    openLink();
+  }, 2600);
+
+  // iOS click thủ công
+  btn.addEventListener("click", openLink);
+</script>
+
+</body>
+</html>
